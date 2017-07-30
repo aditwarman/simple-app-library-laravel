@@ -14,7 +14,7 @@ class AddIdCardNumberIntoCustomer extends Migration
     public function up()
     {
         Schema::table('customers', function (Blueprint $table) {
-            $table->integer('card_numb', 20)->unique();
+            $table->integer('card_numb', false, true)->length(20);
         });
     }
 
