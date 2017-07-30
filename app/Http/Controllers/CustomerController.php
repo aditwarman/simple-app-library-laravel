@@ -56,6 +56,15 @@ class CustomerController extends Controller
 
 	public function postEdit(Request $request)
     {
+	$validate = [
+            'card_numb' => 'required|numeric|unique:customers',
+            'name' => 'required',
+            'gender' => 'required',
+            'address' => 'required',
+        ];
+	
+	$this->validate($request, $validate);
+		
         if ($this->updateOrCreateCustomer($request)) {
             flash('Data with <strong> ID '.$request->customer_id.'</strong> was changed')->important();
             return redirect('list/customer');
